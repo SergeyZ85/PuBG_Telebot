@@ -1,4 +1,4 @@
-version: '3.13-slim'
+
 
 services:
   telegram-bot:
@@ -7,8 +7,8 @@ services:
     restart: always  # Всегда перезапускать при падении
 
     volumes:
-      - images:/app/images
-      - logs:/app/logs
+      - ./images:/app/images
+      - ./logs:/app/logs
     ports:
       - "80:5000"  # Публикуем на стандартном HTTP-порту
     healthcheck:
