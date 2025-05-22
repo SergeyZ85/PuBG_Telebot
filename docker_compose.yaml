@@ -1,0 +1,20 @@
+version: '3.13-slim'
+
+services:
+  telegram-bot:
+    build: .
+    container_name: telegram-bot-prod
+    restart: always  # Всегда перезапускать при падении
+
+    volumes:
+      - images:/app/images
+      - logs:/app/logs
+    ports:
+      - "80:5000"  # Публикуем на стандартном HTTP-порту
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+
